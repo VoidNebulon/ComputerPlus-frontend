@@ -129,7 +129,7 @@ const Footer = () => (
           </nav>
         </div>
         <div>
-          <h4 className="font-headline font-semibold mb-4">Community</h4>
+          <h4 className="font-headline font-semibold mb-4">Socials</h4>
           <div className="flex gap-4">
             <Link href="#" aria-label="Instagram"><Instagram className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
             <Link href="#" aria-label="Facebook"><Facebook className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
