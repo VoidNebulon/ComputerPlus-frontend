@@ -109,8 +109,8 @@ const Header = () => (
 const Footer = () => (
   <footer className="border-t bg-background/80">
     <div className="container">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-        <div className="col-span-2 md:col-span-1">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 justify-items-center">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <Link href="#" className="flex items-center gap-2 mb-4">
             <Cpu className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold font-headline">Computer Plus</span>
