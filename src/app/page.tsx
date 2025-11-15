@@ -34,18 +34,18 @@ import { placeHolderImages } from "@/lib/placeholder-images";
 
 
 const products: Product[] = [
-  { id: '1', name: "QuantumCore i9 Processor", price: 499.99, imageUrl: placeHolderImages[0].imageUrl, imageHint: placeHolderImages[0].imageHint, discount: 10, isNew: true },
-  { id: '2', name: "AeroCool RGB Gaming Case", price: 89.99, imageUrl: placeHolderImages[1].imageUrl, imageHint: placeHolderImages[1].imageHint, isNew: true },
-  { id: '3', name: "GigaWave X-99 Motherboard", price: 219.99, imageUrl: placeHolderImages[2].imageUrl, imageHint: placeHolderImages[2].imageHint, discount: 5 },
-  { id: '4', name: "HyperXtreme 32GB DDR5 RAM", price: 159.99, imageUrl: placeHolderImages[3].imageUrl, imageHint: placeHolderImages[3].imageHint, isNew: false },
-  { id: '5', name: "NVSword RTX 9090 GPU", price: 1999.99, imageUrl: placeHolderImages[4].imageUrl, imageHint: placeHolderImages[4].imageHint, discount: 15 },
-  { id: '6', name: "SwiftRead 2TB NVMe SSD", price: 179.99, imageUrl: placeHolderImages[5].imageUrl, imageHint: placeHolderImages[5].imageHint, isNew: true },
-  { id: '7', name: "VoltMax 850W Gold PSU", price: 129.99, imageUrl: placeHolderImages[6].imageUrl, imageHint: placeHolderImages[6].imageHint, isNew: false },
-  { id: '8', name: "ArcticFreeze Liquid Cooler", price: 119.99, imageUrl: placeHolderImages[7].imageUrl, imageHint: placeHolderImages[7].imageHint, discount: 20 },
-  { id: '9', name: "MechanoType Pro Keyboard", price: 99.99, imageUrl: placeHolderImages[8].imageUrl, imageHint: placeHolderImages[8].imageHint, isNew: true },
-  { id: '10', name: "GlidePoint Gaming Mouse", price: 59.99, imageUrl: placeHolderImages[9].imageUrl, imageHint: placeHolderImages[9].imageHint, isNew: false },
-  { id: '11', name: "CrystalView 4K 27\" Monitor", price: 449.99, imageUrl: placeHolderImages[10].imageUrl, imageHint: placeHolderImages[10].imageHint, discount: 5 },
-  { id: '12', name: "SoundScape Wireless Headset", price: 149.99, imageUrl: placeHolderImages[11].imageUrl, imageHint: placeHolderImages[11].imageHint, isNew: true },
+  { id: '1', name: "QuantumCore i9 Processor", price: 499.99, imageUrl: "https://picsum.photos/seed/100/600/600", imageHint: "cpu processor", discount: 10, isNew: true },
+  { id: '2', name: "AeroCool RGB Gaming Case", price: 89.99, imageUrl: "https://picsum.photos/seed/101/600/600", imageHint: "computer case", isNew: true },
+  { id: '3', name: "GigaWave X-99 Motherboard", price: 219.99, imageUrl: "https://picsum.photos/seed/102/600/600", imageHint: "motherboard circuit", discount: 5 },
+  { id: '4', name: "HyperXtreme 32GB DDR5 RAM", price: 159.99, imageUrl: "https://picsum.photos/seed/103/600/600", imageHint: "ram memory", isNew: false },
+  { id: '5', name: "NVSword RTX 9090 GPU", price: 1999.99, imageUrl: "https://picsum.photos/seed/104/600/600", imageHint: "graphics card", discount: 15 },
+  { id: '6', name: "SwiftRead 2TB NVMe SSD", price: 179.99, imageUrl: "https://picsum.photos/seed/105/600/600", imageHint: "ssd drive", isNew: true },
+  { id: '7', name: "VoltMax 850W Gold PSU", price: 129.99, imageUrl: "https://picsum.photos/seed/106/600/600", imageHint: "power supply", isNew: false },
+  { id: '8', name: "ArcticFreeze Liquid Cooler", price: 119.99, imageUrl: "https://picsum.photos/seed/107/600/600", imageHint: "cpu cooler", discount: 20 },
+  { id: '9', name: "MechanoType Pro Keyboard", price: 99.99, imageUrl: "https://picsum.photos/seed/108/600/600", imageHint: "mechanical keyboard", isNew: true },
+  { id: '10', name: "GlidePoint Gaming Mouse", price: 59.99, imageUrl: "https://picsum.photos/seed/109/600/600", imageHint: "gaming mouse", isNew: false },
+  { id: '11', name: "CrystalView 4K 27\" Monitor", price: 449.99, imageUrl: "https://picsum.photos/seed/110/600/600", imageHint: "computer monitor", discount: 5 },
+  { id: '12', name: "SoundScape Wireless Headset", price: 149.99, imageUrl: "https://picsum.photos/seed/111/600/600", imageHint: "gaming headset", isNew: true },
 ];
 
 const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
@@ -109,26 +109,13 @@ const Header = () => (
 const Footer = () => (
   <footer className="border-t bg-background/80">
     <div className="container">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <Link href="#" className="flex items-center gap-2 mb-4">
             <Cpu className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold font-headline">Computer Plus</span>
           </Link>
-        </div>
-        <div>
-          <h4 className="font-headline font-semibold mb-4">Legal</h4>
-          <nav className="flex flex-col gap-2 text-sm">
-            <Link href="#" className="text-muted-foreground hover:text-primary">Shipping Policy</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">Return Policy</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">About Warranty</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">Terms & Conditions</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">Privacy Policy</Link>
-          </nav>
-        </div>
-        <div>
-          <h4 className="font-headline font-semibold mb-4">Socials</h4>
-          <div className="flex gap-4">
+          <div className="flex gap-4 mt-4">
             <Link href="#" aria-label="Instagram"><Instagram className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
             <Link href="#" aria-label="Facebook"><Facebook className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
             <Link href="#" aria-label="WhatsApp">
@@ -137,6 +124,16 @@ const Footer = () => (
               </svg>
             </Link>
           </div>
+        </div>
+        <div className="justify-self-center md:justify-self-end">
+          <h4 className="font-headline font-semibold mb-4 text-center md:text-left">Legal</h4>
+          <nav className="flex flex-col gap-2 text-sm text-center md:text-left">
+            <Link href="#" className="text-muted-foreground hover:text-primary">Shipping Policy</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary">Return Policy</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary">About Warranty</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary">Terms & Conditions</Link>
+            <Link href="#" className="text-muted-foreground hover:text-primary">Privacy Policy</Link>
+          </nav>
         </div>
       </div>
       <div className="py-6 border-t">
