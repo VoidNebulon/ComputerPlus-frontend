@@ -115,7 +115,6 @@ const Footer = () => (
             <Cpu className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold font-headline">Computer Plus</span>
           </Link>
-          <p className="text-sm text-muted-foreground">High-performance parts, unbeatable prices.</p>
         </div>
         <div>
           <h4 className="font-headline font-semibold mb-4">Legal</h4>
