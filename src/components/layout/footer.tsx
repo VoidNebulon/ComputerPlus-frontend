@@ -1,39 +1,96 @@
+
+"use client";
 import Link from "next/link";
 import { Cpu, Facebook, Instagram } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
-export const Footer = () => (
-    <footer className="border-t bg-background/80">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
+export const Footer = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { type: "spring", stiffness: 100, damping: 12 },
+      });
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.footer
+      ref={ref}
+      animate={controls}
+      initial={{ opacity: 0, y: 60, scale: 0.95 }}
+      className="relative bg-background"
+    >
+      {/* Separation line */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-0.5 bg-primary/10"></div>
+
+      <div className="relative max-w-7xl mx-auto px-12 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Logo + Socials */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <Link href="#" className="flex items-center gap-2 mb-4">
-              <Cpu className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold font-headline">Computer Plus</span>
+            <Link href="#" className="flex items-center gap-3 mb-4">
+              <Cpu className="h-10 w-10 text-primary" />
+              <span className="text-2xl font-bold font-headline">Computer Plus</span>
             </Link>
-            <div className="flex gap-4 mt-4">
-              <Link href="#" aria-label="Instagram"><Instagram className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
-              <Link href="#" aria-label="Facebook"><Facebook className="h-6 w-6 text-muted-foreground hover:text-primary" /></Link>
-              <Link href="#" aria-label="WhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-6 w-6 text-muted-foreground hover:text-primary" fill="currentColor">
-                  <path d="M380.9 97.1c-41.9-42-97.7-65.1-157-65.1-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480 117.7 449.1c32.4 17.7 68.9 27 106.1 27l.1 0c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s56.2 81.2 56.1 130.5c0 101.8-84.9 184.6-186.6 184.6zM325.1 300.5c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4s4.6-24.1 3.2-26.4c-1.3-2.5-5-3.9-10.5-6.6z"/>
+
+            <div className="flex gap-3 mt-2">
+              {[{ icon: Instagram, href: "#", label: "Instagram" }, { icon: Facebook, href: "#", label: "Facebook" }].map((s, idx) => (
+                <Link
+                  key={idx}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-muted/10 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <s.icon className="h-5 w-5" />
+                  <span className="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-30 animate-ripple"></span>
+                </Link>
+              ))}
+              {/* WhatsApp icon */}
+              <Link
+                href="#"
+                aria-label="WhatsApp"
+                className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-muted/10 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-5 w-5" fill="currentColor">
+                <path d="M380.9 97.1c-41.9-42-97.7-65.1-157-65.1-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480 117.7 449.1c32.4 17.7 68.9 27 106.1 27l.1 0c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s56.2 81.2 56.1 130.5c0 101.8-84.9 184.6-186.6 184.6zM325.1 300.5c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4s4.6-24.1 3.2-26.4c-1.3-2.5-5-3.9-10.5-6.6z"/>
                 </svg>
+                <span className="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-30 animate-ripple"></span>
               </Link>
             </div>
           </div>
+
+          {/* Legal links */}
           <div className="justify-self-center md:justify-self-end">
             <h4 className="font-headline font-semibold mb-4 text-center md:text-left">Legal</h4>
             <nav className="flex flex-col gap-2 text-sm text-center md:text-left">
-              <Link href="#" className="text-muted-foreground hover:text-primary">Shipping Policy</Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">Return Policy</Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">About Warranty</Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">Terms & Conditions</Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">Privacy Policy</Link>
+              {["Shipping Policy", "Return Policy", "About Warranty", "Terms & Conditions", "Privacy Policy"].map((link, idx) => (
+                <Link
+                  key={idx}
+                  href="#"
+                  className="relative group text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <span className="relative z-10">{link}</span>
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all group-hover:w-full"></span>
+                </Link>
+              ))}
             </nav>
           </div>
         </div>
-        <div className="py-6 border-t">
-          <p className="text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Computer Plus. All Rights Reserved.</p>
+
+        {/* Bottom copyright */}
+        <div className="mt-8 pt-4 border-t border-primary/30">
+          <p className="text-center text-sm text-muted-foreground">
+            © 2025 Computer Plus. All Rights Reserved. Made with ❤️ by Computer Plus
+          </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
+};
