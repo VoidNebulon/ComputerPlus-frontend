@@ -24,7 +24,7 @@ export const CategoryNav = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="group relative flex items-center gap-2 border border-border/40 hover:border-primary transition-all duration-300 hover:bg-primary/5 active:scale-[0.97]"
+                className="group relative flex items-center gap-2 border border-border/40 hover:border-primary transition-all duration-300 hover:bg-primary active:scale-[0.97]"
               >
                 All Categories
                 <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
