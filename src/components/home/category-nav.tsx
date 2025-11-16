@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { ChevronDown, Search } from "lucide-react";
 import {
@@ -13,7 +14,7 @@ const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
 
 export const CategoryNav = () => (
     <section className="border-b">
-        <div className="container flex flex-wrap items-center justify-between gap-4 py-4">
+        <div className="container flex flex-wrap items-center justify-between gap-4 py-4 px-28">
         <div className="flex items-center gap-4">
             <DropdownMenu>
             <DropdownMenuTrigger asChild>
