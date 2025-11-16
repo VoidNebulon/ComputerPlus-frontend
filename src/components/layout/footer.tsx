@@ -1,4 +1,3 @@
-
 "use client";
 import Link from "next/link";
 import { Facebook, Instagram } from "lucide-react";
@@ -31,12 +30,14 @@ const Logo = () => (
       <linearGradient id="paint0_linear_32_43" x1="43.2262" y1="10.8368" x2="2.2002" y2="10.8368" gradientUnits="userSpaceOnUse">
         <stop stopColor="#E98BAF" />
         <stop offset="0.677885" stopColor="#EC1F24" stopOpacity="0.8" />
-        <stop offset="1" stop-color="#EC1F24" />
+        <stop offset="1" stopColor="#EC1F24" />
       </linearGradient>
     </defs>
   </svg>
 );
-
+const ig = "https://instagram.com"
+const fb = "https://facebook.com"
+const wa = "https://whatsapp.com"
 
 export const Footer = () => {
   const controls = useAnimation();
@@ -73,7 +74,7 @@ export const Footer = () => {
             </Link>
 
             <div className="flex gap-3 mt-2">
-              {[{ icon: Instagram, href: "#", label: "Instagram" }, { icon: Facebook, href: "#", label: "Facebook" }].map((s, idx) => (
+              {[{ icon: Instagram, href: ig, label: "Instagram", target: "_blank" }, { icon: Facebook, href: fb, label: "Facebook", target:"_blank" }].map((s, idx) => (
                 <Link
                   key={idx}
                   href={s.href}
@@ -86,7 +87,8 @@ export const Footer = () => {
               ))}
               {/* WhatsApp icon */}
               <Link
-                href="#"
+                href= {wa}
+                target="_blank"
                 aria-label="WhatsApp"
                 className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-muted/10 text-muted-foreground hover:text-primary transition-colors"
               >
