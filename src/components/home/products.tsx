@@ -53,31 +53,46 @@ export const Products = () => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>
-            
-            <Pagination className="mt-12">
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#" isActive>
-                            2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+
+            {/* Modern Pagination */}
+            <div className="mt-8 flex justify-center">
+                <Pagination>
+                    <PaginationContent className="flex space-x-1">
+                        {/* Previous Button */}
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href="#"
+                                className="px-3 py-1 rounded border border-gray-300 text-gray-600 hover:bg-primary transition-colors"
+                            />
+                        </PaginationItem>
+
+                        {/* Page Numbers */}
+                        {[1, 2, 3, 4].map((page) => (
+                            <PaginationItem key={page}>
+                                <PaginationLink
+                                    href="#"
+                                    isActive={page === 1} // Page 1 active by default
+                                    className={`
+                                        px-3 py-1 rounded border transition-colors
+                                        ${page === 1 ? "bg-primary text-white border-primary" : "border-gray-300 text-gray-600 hover:bg-primary"}
+                                        `}
+                                >
+                                    {page}
+                                </PaginationLink>
+                            </PaginationItem>
+                        ))}
+
+                        {/* Next Button */}
+                        <PaginationItem>
+                            <PaginationNext
+                                href="#"
+                                className="px-3 py-1 rounded border border-gray-300 text-gray-600 hover:bg-primary transition-colors"
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
+
         </div>
     </section>
 );
