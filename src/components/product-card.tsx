@@ -1,66 +1,3 @@
-// import Image from "next/image";
-// import Link from "next/link";
-// import { cn } from "@/lib/utils";
-// import { Badge } from "@/components/ui/badge";
-// import { Card, CardContent } from "@/components/ui/card";
-// import { Minus, Plus, ShoppingCart } from "lucide-react";
-
-// export type Product = {
-//   id: string;
-//   name: string;
-//   price: number;
-//   imageUrl: string;
-//   imageHint: string;
-//   discount?: number;
-//   isNew?: boolean;
-// };
-
-// type ProductCardProps = {
-//   product: Product;
-//   className?: string;
-// };
-
-// export function ProductCard({ product, className }: ProductCardProps) {
-//   return (
-//     <Link href="#" className="group block">
-//       <Card
-//         className={cn(
-//           "overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
-//           className
-//         )}
-//       >
-//         <div className="relative aspect-square w-full overflow-hidden">
-//           <Image
-//             src={product.imageUrl}
-//             alt={product.name}
-//             fill
-//             className="object-cover transition-transform duration-300 group-hover:scale-105"
-//             data-ai-hint={product.imageHint}
-//           />
-//           {product.discount && (
-//             <Badge variant="destructive" className="absolute top-3 left-3">
-//               -{product.discount}%
-//             </Badge>
-//           )}
-//           {product.isNew && (
-//             <Badge className="absolute top-3 right-3 bg-accent text-accent-foreground hover:bg-accent/80">
-//               New
-//             </Badge>
-//           )}
-//         </div>
-//         <CardContent className="p-4">
-//           <h3 className="text-base font-semibold font-headline truncate">
-//             {product.name}
-//           </h3>
-//           <p className="mt-1 text-lg font-bold text-primary">
-//             ${product.price.toFixed(2)}
-//           </p>
-//         </CardContent>
-//       </Card>
-//     </Link>
-//   );
-// }
-
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -88,7 +25,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Link href="#" className="group block">
       <Card
         className={cn(
-          "overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-[320px]",
+          "overflow-hidden rounded-[20px] transition-all duration-400 hover:-translate-y-1 hover:opacity-95 hover:shadow-[0_0_30px_1px_rgba(255,74,110,0.35)] flex flex-col h-[320px]",
           className
         )}
       >
@@ -125,7 +62,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
           {/* Quantity selector + Cart icon */}
           <div className="flex items-center justify-between mt-1">
-            {/* Quantity selector */}
+            {/* Quantity selector (shrink-wrapped) */}
             <div className="inline-flex items-center border rounded-md overflow-hidden text-sm">
               <button className="px-2 py-1 hover:bg-gray-100">
                 <Minus size={14} />
@@ -140,7 +77,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
               </button>
             </div>
 
-            {/* Cart icon */}
+            {/* Cart icon on right */}
             <button className="p-2 bg-primary text-white rounded-md hover:bg-primary/90">
               <ShoppingCart size={16} />
             </button>
