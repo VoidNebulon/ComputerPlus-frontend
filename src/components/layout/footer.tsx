@@ -76,7 +76,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Logo + Socials */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <Link href="#" className="flex items-center gap-3 mb-4">
+            <Link href="/" className="flex items-center gap-3 mb-4">
               <Logo />
               <span className="text-2xl font-bold font-headline">Computer Plus</span>
             </Link>
