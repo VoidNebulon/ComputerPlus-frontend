@@ -53,7 +53,7 @@ export default function LegalPage({ params }: { params: { slug: string } }) {
     <div className="flex min-h-dvh flex-col">
       <Header />
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-28 py-12">
           <article className="prose lg:prose-xl dark:prose-invert max-w-none">
             <h1>{title}</h1>
             <ReactMarkdown>{content.substring(content.indexOf('\n') + 1)}</ReactMarkdown>
