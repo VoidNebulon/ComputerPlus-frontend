@@ -15,7 +15,7 @@ const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
 export const CategoryNav = () => {
   return (
     <section className="border-b bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40">
-      <div className="container flex flex-wrap items-center justify-between gap-4 py-4 px-8">
+      <div className="container flex flex-wrap items-center justify-between gap-4 py-4 px-16">
         {/* LEFT SIDE */}
         <div className="flex items-center gap-4">
 

@@ -2,7 +2,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CategoryNav } from "@/components/home/category-nav";
-import { FeaturedProducts } from "@/components/home/featured-products";
+import { Products } from "@/components/home/products";
 
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <CategoryNav />
-        <FeaturedProducts />
+        <Products />
       </main>
       <Footer />
     </div>

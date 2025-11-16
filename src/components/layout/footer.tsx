@@ -28,9 +28,9 @@ const Logo = () => (
         </feMerge>
       </filter>
       <linearGradient id="paint0_linear_32_43" x1="43.2262" y1="10.8368" x2="2.2002" y2="10.8368" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#E98BAF" />
-        <stop offset="0.677885" stopColor="#EC1F24" stopOpacity="0.8" />
-        <stop offset="1" stopColor="#EC1F24" />
+        <stop stopColor="#f12778" stopOpacity="0.6" />
+        <stop offset="0.4" stopColor="#f12778" stopOpacity="0.8" />
+        <stop offset="1" stopColor="#f12778" />
       </linearGradient>
     </defs>
   </svg>
