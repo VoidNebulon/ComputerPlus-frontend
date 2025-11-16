@@ -39,6 +39,14 @@ const ig = "https://instagram.com"
 const fb = "https://facebook.com"
 const wa = "https://whatsapp.com"
 
+const legalLinks = [
+  { title: "Shipping Policy", href: "/legal/shipping-policy" },
+  { title: "Return Policy", href: "/legal/return-policy" },
+  { title: "About Warranty", href: "/legal/about-warranty" },
+  { title: "Terms & Conditions", href: "/legal/terms-and-conditions" },
+  { title: "Privacy Policy", href: "/legal/privacy-policy" },
+];
+
 export const Footer = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -79,6 +87,7 @@ export const Footer = () => {
                   key={idx}
                   href={s.href}
                   aria-label={s.label}
+                  target={s.target}
                   className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-muted/10 text-muted-foreground hover:text-primary transition-colors"
                 >
                   <s.icon className="h-5 w-5" />
@@ -104,13 +113,13 @@ export const Footer = () => {
           <div className="justify-self-center md:justify-self-end">
             <h4 className="font-headline font-semibold mb-4 text-center md:text-left">Legal</h4>
             <nav className="flex flex-col gap-2 text-sm text-center md:text-left">
-              {["Shipping Policy", "Return Policy", "About Warranty", "Terms & Conditions", "Privacy Policy"].map((link, idx) => (
+              {legalLinks.map((link) => (
                 <Link
-                  key={idx}
-                  href="#"
+                  key={link.href}
+                  href={link.href}
                   className="relative group text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <span className="relative z-10">{link}</span>
+                  <span className="relative z-10">{link.title}</span>
                   <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-primary transition-all group-hover:w-full"></span>
                 </Link>
               ))}
