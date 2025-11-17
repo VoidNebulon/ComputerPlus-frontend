@@ -11,10 +11,17 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
+const name = "Computer Plus"
 
 export const CategoryNav = () => {
   return (
     <section className="border-b bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40">
+      {/* WELCOME MESSAGE */}
+      <div className="container py-[8px]">
+        <h2 className="px-20 text-2xl font-headline font-semibold text-foreground underline">
+          Welcome {name}!
+        </h2>
+      </div>
       <div className="container flex flex-wrap items-center justify-between gap-4 py-4 px-16">
         {/* LEFT SIDE */}
         <div className="flex items-center gap-4">
