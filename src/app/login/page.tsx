@@ -23,7 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address.' }),
+  username: z.string().min(1, { message: 'Username is required.' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
 });
 
@@ -64,7 +64,7 @@ export default function LoginPage() {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -87,7 +87,7 @@ export default function LoginPage() {
             </div>
           <CardTitle className="text-2xl text-center">Login</CardTitle>
           <CardDescription className="text-center">
-            Enter your email below to login to your account
+            Enter your username below to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -95,15 +95,15 @@ export default function LoginPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="email"
+                name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Username</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="yourname@example.com"
+                        placeholder="your_username"
                         {...field}
-                        type="email"
+                        type="text"
                       />
                     </FormControl>
                     <FormMessage />
