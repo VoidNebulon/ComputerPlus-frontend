@@ -107,7 +107,7 @@ export default function NotFound() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10"
         >
-          <Button asChild size="lg" variant="ghost" className="group text-lg font-semibold">
+          <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border hover:border-primary">
             <Link href="/">
               Take me Home
               <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
