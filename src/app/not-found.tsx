@@ -78,6 +78,26 @@ const BrokenChipIcon = () => (
   </motion.div>
 );
 
+const StaticFallback = () => (
+    <div className="mt-10">
+      <div className="w-[120px] h-[120px] mx-auto" />
+      <h1 className="mt-8 font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        404: Page Not Found
+      </h1>
+      <p className="mt-6 text-base leading-7 text-muted-foreground">
+        Loading...
+      </p>
+      <div className="mt-10">
+        <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border">
+          <Link href="/">
+            Take me Home
+          </Link>
+        </Button>
+      </div>
+    </div>
+);
+
+
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
 
@@ -88,7 +108,9 @@ export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-background via-rose-50 to-rose-100 text-center px-4">
       <div className="max-w-md">
-        {isClient ? (
+        {!isClient ? (
+          <StaticFallback />
+        ) : (
           <>
             <BrokenChipIcon />
             <motion.h1
@@ -124,23 +146,6 @@ export default function NotFound() {
               </Button>
             </motion.div>
           </>
-        ) : (
-          // Render a static fallback on the server
-          <div className="mt-10">
-            <h1 className="mt-8 font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              404: Page Not Found
-            </h1>
-            <p className="mt-6 text-base leading-7 text-muted-foreground">
-              Loading...
-            </p>
-            <div className="mt-10">
-              <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border">
-                <Link href="/">
-                  Take me Home
-                </Link>
-              </Button>
-            </div>
-          </div>
         )}
       </div>
     </div>
