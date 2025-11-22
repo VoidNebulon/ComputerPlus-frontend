@@ -146,7 +146,7 @@ export default function LoginPage() {
               </Button>
             </form>
           </Form>
-          <hr className="my-4 h-[3px] w-full bg-gradient-to-r from-transparent via-white to-transparent" />
+          <hr className="my-4 h-[2px] w-full bg-gradient-to-r from-transparent via-white to-transparent" />
           {/* Support section */}
           <div className="mt-6 text-center text-md text-secondary-foreground">
             <p className="underline">For Queries, Contact us:</p>
