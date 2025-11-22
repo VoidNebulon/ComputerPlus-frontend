@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const BrokenChipIcon = () => (
   <motion.div
@@ -78,43 +79,69 @@ const BrokenChipIcon = () => (
 );
 
 export default function NotFound() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-background via-rose-50 to-rose-100 text-center px-4">
       <div className="max-w-md">
-        <BrokenChipIcon />
+        {isClient ? (
+          <>
+            <BrokenChipIcon />
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+            >
+              404: This Page is Out of Warranty
+            </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
-        >
-          404: This Page is Out of Warranty
-        </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-6 text-base leading-7 text-muted-foreground"
+            >
+              Oof. Looks like this digital part wasn't in stock. It might be a broken link, a deleted page, or just a glitch in the matrix.
+            </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-6 text-base leading-7 text-muted-foreground"
-        >
-          Oof. Looks like this digital part wasn't in stock. It might be a broken link, a deleted page, or just a glitch in the matrix.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-10"
-        >
-          <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border hover:border-primary">
-            <Link href="/">
-              Take me Home
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
-              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </Button>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-10"
+            >
+              <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border hover:border-primary">
+                <Link href="/">
+                  Take me Home
+                  <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </Button>
+            </motion.div>
+          </>
+        ) : (
+          // Render a static fallback on the server
+          <div className="mt-10">
+            <h1 className="mt-8 font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              404: Page Not Found
+            </h1>
+            <p className="mt-6 text-base leading-7 text-muted-foreground">
+              Loading...
+            </p>
+            <div className="mt-10">
+              <Button asChild size="lg" variant="outline" className="group text-lg font-semibold border-border">
+                <Link href="/">
+                  Take me Home
+                </Link>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
