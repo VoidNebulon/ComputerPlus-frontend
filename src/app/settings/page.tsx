@@ -5,15 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
   Form,
   FormControl,
   FormField,
@@ -25,7 +16,13 @@ import { Input } from '@/components/ui/input';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Separator } from '@/components/ui/separator';
-import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 const settingsSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -53,8 +50,6 @@ const settingsSchema = z.object({
 type SettingsFormValues = z.infer<typeof settingsSchema>;
 
 export default function SettingsPage() {
-  const [isOpen, setIsOpen] = useState(true);
-
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
@@ -73,27 +68,23 @@ export default function SettingsPage() {
   function onSubmit(values: SettingsFormValues) {
     console.log(values);
     // Handle settings update logic here
-    setIsOpen(false); // Close dialog on submit
   }
 
   return (
     <div className="flex min-h-dvh flex-col">
       <Header />
-      <main className="flex flex-1 items-center justify-center bg-background p-4">
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger asChild>
-            <Button variant="outline">Open Settings</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[600px] bg-card">
-            <DialogHeader>
-              <DialogTitle>Settings</DialogTitle>
-              <DialogDescription>
-                Manage your account settings and business information.
-              </DialogDescription>
-            </DialogHeader>
+      <main className="flex flex-1 items-center justify-center bg-background p-4 md:p-8">
+        <Card className="w-full max-w-3xl">
+          <CardHeader>
+            <CardTitle>Settings</CardTitle>
+            <CardDescription>
+              Manage your account settings and business information.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-4">
+                <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
@@ -226,13 +217,13 @@ export default function SettingsPage() {
                      </div>
                   </div>
                 </div>
-                <DialogFooter className="pt-4">
+                <div className="flex justify-end pt-4">
                   <Button type="submit">Save Changes</Button>
-                </DialogFooter>
+                </div>
               </form>
             </Form>
-          </DialogContent>
-        </Dialog>
+          </CardContent>
+        </Card>
       </main>
       <Footer />
     </div>
