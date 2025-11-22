@@ -76,9 +76,9 @@ export default function LoginPage() {
   }
   
   return (
-    <div className="flex items-center justify-center px-4 min-h-screen bg-[radial-gradient(circle_at_30%_20%,#fbcfe8,transparent),radial-gradient(circle_at_70%_80%,#f5939e,transparent)]">
-      <div className="absolute inset-0 backdrop-blur-sm" />
-      <Card className="w-full max-w-md backdrop-blur-md bg-white/30 border border-white/20">
+    <div className="flex items-center justify-center px-4 min-h-screen bg-rose-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose-100 to-rose-50 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-fuchsia-200 to-rose-50">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,#f1277822,transparent_40%),radial-gradient(circle_at_80%_60%,#f1277811,transparent_40%),radial-gradient(circle_at_10%_90%,#f1277811,transparent_40%)]" />
+      <Card className="w-full max-w-md backdrop-blur-sm bg-white/30 border border-white/20">
         <CardHeader className="space-y-4">
           <div className="flex flex-col items-center text-center">
             <Link href="/" className="flex items-center gap-3 mb-4">
@@ -159,3 +159,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+    
