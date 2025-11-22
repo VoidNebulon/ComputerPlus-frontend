@@ -74,9 +74,10 @@ export default function LoginPage() {
     // Here you would typically handle the login logic,
     // e.g., call a Firebase auth function.
   }
-  <div className="absolute inset-0 backdrop-blur-sm" />
+  
   return (
     <div className="flex items-center justify-center px-4 min-h-screen bg-[radial-gradient(circle_at_30%_20%,#fbcfe8,transparent),radial-gradient(circle_at_70%_80%,#f5939e,transparent)]">
+      <div className="absolute inset-0 backdrop-blur-sm" />
       <Card className="w-full max-w-md backdrop-blur-md bg-white/30 border border-white/20">
         <CardHeader className="space-y-4">
           <div className="flex flex-col items-center text-center">
