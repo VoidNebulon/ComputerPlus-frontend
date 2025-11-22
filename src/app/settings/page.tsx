@@ -189,10 +189,10 @@ export default function SettingsPage() {
                           name="confirmPassword"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Confirm New Password</Label>
+                              <FormLabel>Confirm New Password</FormLabel>
                               <FormControl>
                                 <Input type="password" placeholder="••••••••" {...field} />
-                              </FormControl>
+                              FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
