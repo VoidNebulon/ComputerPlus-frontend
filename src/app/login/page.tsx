@@ -74,10 +74,18 @@ export default function LoginPage() {
     // Here you would typically handle the login logic,
     // e.g., call a Firebase auth function.
   }
-  
+
   return (
     <div className="flex items-center justify-center px-4 min-h-screen bg-rose-100">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,#f1277833,transparent_40%),radial-gradient(circle_at_80%_60%,#f1277822,transparent_40%),radial-gradient(circle_at_10%_90%,#f1277822,transparent_40%)]" />
+      <div
+      className="absolute inset-0 bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400"
+      style={{
+        backgroundImage: `
+          radial-gradient(circle at 30% -20%, rgba(241, 39, 120, 0.2), transparent 40%),
+          radial-gradient(circle at 80% 60%, rgba(241, 39, 120, 0.13), transparent 40%),
+          radial-gradient(circle at 10% 90%, rgba(241, 39, 120, 0.13), transparent 40%)
+        `
+      }}/>
       <Card className="w-full max-w-md backdrop-blur-sm bg-white/30 border border-white/20">
         <CardHeader className="space-y-4">
           <div className="flex flex-col items-center text-center">
