@@ -107,10 +107,11 @@ export default function NotFound() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10"
         >
-          <Button asChild size="lg" className="group">
+          <Button asChild size="lg" variant="ghost" className="group text-lg font-semibold">
             <Link href="/">
               Take me Home
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </Button>
         </motion.div>
