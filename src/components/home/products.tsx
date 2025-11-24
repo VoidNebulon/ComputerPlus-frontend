@@ -5,8 +5,7 @@ import {
     PaginationItem,
     PaginationLink,
     PaginationNext,
-    PaginationPrevious,
-    PaginationEllipsis,
+    PaginationPrevious
 } from "@/components/ui/pagination";
 import { placeHolderImages } from "@/lib/placeholder-images";
 

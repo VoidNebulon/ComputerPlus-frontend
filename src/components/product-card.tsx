@@ -1,5 +1,8 @@
+
+'use client';
+
+import * as React from 'react';
 import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,8 +24,23 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product, className }: ProductCardProps) {
+  const [quantity, setQuantity] = React.useState(1);
+
+  const handleQuantityChange = (amount: number) => {
+    setQuantity((prev) => {
+      const newQuantity = prev + amount;
+      return newQuantity < 1 ? 1 : newQuantity;
+    });
+  };
+
+  // Stop propagation on clicks inside the card to prevent link navigation
+  const stopPropagation = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
-    <Link href="#" className="group block">
+    <div className="group block">
       <Card
         className={cn(
           "overflow-hidden rounded-[20px] transition-all duration-400 hover:-translate-y-1 hover:opacity-95 hover:shadow-[0_0_30px_1px_rgba(255,74,110,0.35)] flex flex-col h-[320px]",
@@ -61,29 +79,38 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </div>
 
           {/* Quantity selector + Cart icon */}
-          <div className="flex items-center justify-between mt-1">
+          <div className="flex items-center justify-between mt-1" onClick={stopPropagation}>
             {/* Quantity selector (shrink-wrapped) */}
             <div className="inline-flex items-center border rounded-md overflow-hidden text-sm">
-              <button className="px-2 py-1 hover:bg-gray-100">
+              <button
+                className="px-2 py-1 hover:bg-gray-100"
+                onClick={() => handleQuantityChange(-1)}
+                type="button"
+              >
                 <Minus size={14} />
               </button>
               <input
                 type="number"
-                defaultValue={1}
-                className="w-10 text-center outline-none text-sm py-1"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
+                className="w-10 text-center outline-none text-sm py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
-              <button className="px-2 py-1 hover:bg-gray-100">
+              <button
+                className="px-2 py-1 hover:bg-gray-100"
+                onClick={() => handleQuantityChange(1)}
+                type="button"
+              >
                 <Plus size={14} />
               </button>
             </div>
 
             {/* Cart icon on right */}
-            <button className="p-2 bg-primary text-white rounded-md hover:bg-primary/90">
+            <button className="p-2 bg-primary text-white rounded-md hover:bg-primary/90" type="button">
               <ShoppingCart size={16} />
             </button>
           </div>
         </CardContent>
       </Card>
-    </Link>
+    </div>
   );
 }

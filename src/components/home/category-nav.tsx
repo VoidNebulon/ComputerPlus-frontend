@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
-const name = "Computer Plus"
+const name = "Computer Plus Sahiwal"
 
 export const CategoryNav = () => {
   const [isOpen, setIsOpen] = React.useState(false);
