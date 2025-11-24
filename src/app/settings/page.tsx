@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -89,9 +90,9 @@ export default function SettingsPage() {
               <Button type="submit">Save Changes</Button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-1">
                 <Card>
                   <CardHeader>
                     <CardTitle>Business Information</CardTitle>
