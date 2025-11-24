@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -32,8 +33,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { useCart, Product, CartItem } from '@/context/cart-context';
+import { useCart, Product } from '@/context/cart-context';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 // Mock product data
 const allProducts: Product[] = [
@@ -53,8 +55,9 @@ const allProducts: Product[] = [
 export default function NewOrderPage() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<Product[]>([]);
-  const { cartItems, addToCart, updateQuantity, removeFromCart, totalAmount } = useCart();
+  const { cartItems, addToCart, updateQuantity, removeFromCart, totalAmount, placeOrder } = useCart();
   const { toast } = useToast();
+  const router = useRouter();
 
   React.useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -87,6 +90,16 @@ export default function NewOrderPage() {
   const handleRemoveFromCart = (productId: string) => {
     removeFromCart(productId);
   };
+  
+  const handlePlaceOrder = () => {
+    const orderId = placeOrder();
+    toast({
+        title: "Order Placed!",
+        description: `Your order #${orderId} has been successfully created.`,
+    });
+    router.push('/order/list');
+  };
+
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -226,7 +239,7 @@ export default function NewOrderPage() {
                   </Table>
                   <Separator className="my-6" />
                   <div className="flex justify-end">
-                      <Button size="lg" disabled={cartItems.length === 0} className="transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95">
+                      <Button size="lg" disabled={cartItems.length === 0} className="transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95" onClick={handlePlaceOrder}>
                           <ShoppingCart className="mr-2 h-5 w-5" />
                           Place Order
                       </Button>
