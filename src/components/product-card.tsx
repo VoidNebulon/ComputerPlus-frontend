@@ -13,9 +13,10 @@ import { useToast } from '@/hooks/use-toast';
 type ProductCardProps = {
   product: Product;
   className?: string;
+  onCardClick: () => void;
 };
 
-export function ProductCard({ product, className }: ProductCardProps) {
+export function ProductCard({ product, className, onCardClick }: ProductCardProps) {
   const [quantity, setQuantity] = React.useState(1);
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -28,8 +29,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent modal from opening
     e.preventDefault();
-    e.stopPropagation();
     addToCart(product, quantity);
     toast({
       title: "Added to cart",
@@ -37,14 +38,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
     });
   };
 
-  // Stop propagation on clicks inside the card to prevent link navigation
   const stopPropagation = (e: React.MouseEvent) => {
-    e.preventDefault();
     e.stopPropagation();
+    e.preventDefault();
   };
 
   return (
-    <div className="group block">
+    <div className="group block" onClick={onCardClick} role="button">
       <Card
         className={cn(
           "overflow-hidden rounded-[20px] transition-all duration-400 hover:-translate-y-1 hover:opacity-95 hover:shadow-[0_0_30px_1px_rgba(255,74,110,0.35)] flex flex-col h-[320px]",
@@ -88,7 +88,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             <div className="inline-flex items-center border rounded-md overflow-hidden text-sm">
               <button
                 className="px-2 py-1 hover:bg-gray-100"
-                onClick={() => handleQuantityChange(-1)}
+                onClick={(e) => { e.stopPropagation(); handleQuantityChange(-1); }}
                 type="button"
               >
                 <Minus size={14} />
@@ -96,12 +96,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
               <input
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
+                onChange={(e) => { e.stopPropagation(); setQuantity(parseInt(e.target.value, 10) || 1); }}
+                onClick={(e) => e.stopPropagation()}
                 className="w-10 text-center outline-none text-sm py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <button
                 className="px-2 py-1 hover:bg-gray-100"
-                onClick={() => handleQuantityChange(1)}
+                onClick={(e) => { e.stopPropagation(); handleQuantityChange(1); }}
                 type="button"
               >
                 <Plus size={14} />

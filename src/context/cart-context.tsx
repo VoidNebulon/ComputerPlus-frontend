@@ -2,6 +2,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useMemo } from 'react';
+import type { ImagePlaceholder } from '@/lib/placeholder-images';
 
 // Types
 export type Product = {
@@ -10,6 +11,7 @@ export type Product = {
   price: number;
   imageUrl: string;
   imageHint: string;
+  description: string;
   discount?: number;
   isNew?: boolean;
 };
