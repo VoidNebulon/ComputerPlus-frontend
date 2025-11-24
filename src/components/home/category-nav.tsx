@@ -1,3 +1,6 @@
+
+"use client";
+
 import Link from "next/link";
 import { ChevronDown, Search } from "lucide-react";
 import {
@@ -9,11 +12,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import React from "react";
 
 const categories = ["CPUs", "Cases", "Motherboards", "RAM", "GPUs", "Storage"];
 const name = "Computer Plus"
 
 export const CategoryNav = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <section className="border-b bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40">
       {/* WELCOME MESSAGE */}
@@ -27,26 +33,28 @@ export const CategoryNav = () => {
         <div className="flex items-center gap-4">
 
           {/* DROPDOWN */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="group relative flex items-center gap-2 border border-border/40 hover:border-primary transition-all duration-300 hover:bg-primary active:scale-[0.97]"
-              >
-                All Categories
-                <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-              </Button>
-            </DropdownMenuTrigger>
+          <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+            <div onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="group relative flex items-center gap-2 border border-border/40 hover:border-primary transition-all duration-300 hover:bg-primary active:scale-[0.97]"
+                >
+                  All Categories
+                  <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                </Button>
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent
-              align="start"
-              className="animate-in fade-in-0 zoom-in-95 duration-200 w-48"
-            >
-              <DropdownMenuItem>All Categories</DropdownMenuItem>
-              {categories.map((category) => (
-                <DropdownMenuItem key={category}>{category}</DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
+              <DropdownMenuContent
+                align="start"
+                className="animate-in fade-in-0 zoom-in-95 duration-200 w-48"
+              >
+                <DropdownMenuItem>All Categories</DropdownMenuItem>
+                {categories.map((category) => (
+                  <DropdownMenuItem key={category}>{category}</DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </div>
           </DropdownMenu>
 
           {/* NAV LINKS */}
