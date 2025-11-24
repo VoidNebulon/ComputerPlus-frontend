@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -87,7 +86,12 @@ export default function SettingsPage() {
                   Manage your account and business information.
                 </p>
               </div>
-              <Button type="submit">Save Changes</Button>
+              <Button
+                type="submit"
+                className="transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+              >
+                Save Changes
+              </Button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
