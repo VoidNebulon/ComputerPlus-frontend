@@ -15,7 +15,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
@@ -33,6 +32,9 @@ const settingsSchema = z.object({
   currentPassword: z.string().optional(),
   newPassword: z.string().min(6, 'New password must be at least 6 characters').optional().or(z.literal('')),
   confirmPassword: z.string().optional(),
+  bankName: z.string().min(1, 'Bank name is required'),
+  accountTitle: z.string().min(1, 'Account title is required'),
+  accountNumber: z.string().min(1, 'Account number is required'),
 }).refine(data => {
   if (data.newPassword && !data.currentPassword) {
     return false;
@@ -60,6 +62,9 @@ export default function SettingsPage() {
       currentPassword: '',
       newPassword: '',
       confirmPassword: '',
+      bankName: '',
+      accountTitle: '',
+      accountNumber: '',
     },
   });
 
@@ -71,41 +76,77 @@ export default function SettingsPage() {
   return (
     <div className="flex min-h-dvh flex-col">
       <Header />
-      <main className="flex flex-1 items-center justify-center bg-background p-4 md:p-8">
-        <Card className="w-full max-w-3xl">
-          <CardHeader>
-            <CardTitle>Settings</CardTitle>
-            <CardDescription>
-              Manage your account settings and business information.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="businessName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Business Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Your Business Name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+      <main className="flex-1 bg-background p-4 md:p-8">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="container mx-auto">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h1 className="text-3xl font-bold font-headline">Settings</h1>
+                <p className="text-muted-foreground">
+                  Manage your account and business information.
+                </p>
+              </div>
+              <Button type="submit">Save Changes</Button>
+            </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <FormField
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Left Column */}
+              <div className="lg:col-span-2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Business Information</CardTitle>
+                    <CardDescription>Update your public business details.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <FormField
                       control={form.control}
-                      name="email"
+                      name="businessName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel>Business Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="your.email@example.com" {...field} />
+                            <Input placeholder="Your Business Name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your.email@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your Phone Number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="address"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Address</FormLabel>
+                          <FormControl>
+                            <Input placeholder="123 Main St" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -113,51 +154,30 @@ export default function SettingsPage() {
                     />
                     <FormField
                       control={form.control}
-                      name="phone"
+                      name="city"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone</FormLabel>
+                          <FormLabel>City</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your Phone Number" {...field} />
+                            <Input placeholder="Your City" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                  </div>
+                  </CardContent>
+                </Card>
+              </div>
 
-                  <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="123 Main St" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>City</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Your City" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Separator className="my-6" />
-
-                  <h3 className="text-lg font-medium">Change Password</h3>
-                  <div className="space-y-4">
-                     <FormField
+              {/* Right Column */}
+              <div className="space-y-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Change Password</CardTitle>
+                    <CardDescription>Update your login password.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <FormField
                       control={form.control}
                       name="currentPassword"
                       render={({ field }) => (
@@ -170,43 +190,85 @@ export default function SettingsPage() {
                         </FormItem>
                       )}
                     />
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="newPassword"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>New Password</FormLabel>
-                              <FormControl>
-                                <Input type="password" placeholder="••••••••" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="confirmPassword"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Confirm New Password</FormLabel>
-                              <FormControl>
-                                <Input type="password" placeholder="••••••••" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                     </div>
-                  </div>
-                </div>
-                <div className="flex justify-end pt-4">
-                  <Button type="submit">Save Changes</Button>
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
+                    <FormField
+                      control={form.control}
+                      name="newPassword"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>New Password</FormLabel>
+                          <FormControl>
+                            <Input type="password" placeholder="••••••••" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="confirmPassword"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Confirm New Password</FormLabel>
+                          <FormControl>
+                            <Input type="password" placeholder="••••••••" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Bank Information</CardTitle>
+                    <CardDescription>Your payment details.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="bankName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Bank Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., Global Bank" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="accountTitle"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Account Title</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., John Doe" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="accountNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Account no#</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter account number" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </form>
+        </Form>
       </main>
       <Footer />
     </div>
