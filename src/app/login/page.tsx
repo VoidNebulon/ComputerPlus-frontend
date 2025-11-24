@@ -149,7 +149,10 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+              >
                 Login
               </Button>
             </form>
@@ -167,3 +170,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+    
