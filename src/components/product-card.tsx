@@ -7,16 +7,8 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
-
-export type Product = {
-  id: string;
-  name: string;
-  price: number;
-  imageUrl: string;
-  imageHint: string;
-  discount?: number;
-  isNew?: boolean;
-};
+import { useCart, Product } from '@/context/cart-context';
+import { useToast } from '@/hooks/use-toast';
 
 type ProductCardProps = {
   product: Product;
@@ -25,11 +17,23 @@ type ProductCardProps = {
 
 export function ProductCard({ product, className }: ProductCardProps) {
   const [quantity, setQuantity] = React.useState(1);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const handleQuantityChange = (amount: number) => {
     setQuantity((prev) => {
       const newQuantity = prev + amount;
       return newQuantity < 1 ? 1 : newQuantity;
+    });
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product, quantity);
+    toast({
+      title: "Added to cart",
+      description: `${quantity} x ${product.name} added to your order.`,
     });
   };
 
@@ -105,7 +109,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             </div>
 
             {/* Cart icon on right */}
-            <button className="p-2 bg-primary text-white rounded-md hover:bg-primary/90" type="button">
+            <button className="p-2 bg-primary text-white rounded-md hover:bg-primary/90" type="button" onClick={handleAddToCart}>
               <ShoppingCart size={16} />
             </button>
           </div>

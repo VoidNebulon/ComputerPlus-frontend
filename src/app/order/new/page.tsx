@@ -3,7 +3,6 @@
 import * as React from 'react';
 import {
   Search,
-  X,
   Plus,
   Minus,
   ShoppingCart,
@@ -33,16 +32,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { placeHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
+import { useCart, Product, CartItem } from '@/context/cart-context';
+import { useToast } from '@/hooks/use-toast';
 
 // Mock product data
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  imageUrl: string;
-  imageHint: string;
-};
-
 const allProducts: Product[] = [
   { id: '1', name: 'QuantumCore i9 Processor', price: 499.99, imageUrl: placeHolderImages[0].imageUrl, imageHint: placeHolderImages[0].imageHint },
   { id: '2', name: 'AeroCool RGB Gaming Case', price: 89.99, imageUrl: placeHolderImages[1].imageUrl, imageHint: placeHolderImages[1].imageHint },
@@ -56,14 +49,12 @@ const allProducts: Product[] = [
   { id: '10', name: 'GlidePoint Gaming Mouse', price: 59.99, imageUrl: placeHolderImages[9].imageUrl, imageHint: placeHolderImages[9].imageHint },
 ];
 
-type CartItem = Product & {
-  quantity: number;
-};
 
 export default function NewOrderPage() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<Product[]>([]);
-  const [cartItems, setCartItems] = React.useState<CartItem[]>([]);
+  const { cartItems, addToCart, updateQuantity, removeFromCart, totalAmount } = useCart();
+  const { toast } = useToast();
 
   React.useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -78,16 +69,10 @@ export default function NewOrderPage() {
   }, [searchTerm]);
   
   const handleAddToCart = (product: Product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prevItems, { ...product, quantity: 1 }];
+    addToCart(product, 1);
+     toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your order.`,
     });
   };
 
@@ -96,20 +81,12 @@ export default function NewOrderPage() {
       handleRemoveFromCart(productId);
       return;
     }
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
-      )
-    );
+    updateQuantity(productId, newQuantity);
   };
 
   const handleRemoveFromCart = (productId: string) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== productId)
-    );
+    removeFromCart(productId);
   };
-  
-  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -241,7 +218,7 @@ export default function NewOrderPage() {
                     </TableBody>
                     <TableFooter>
                         <TableRow>
-                            <TableCell colSpan={4} className="text-right font-bold text-lg">Total</TableCell>
+                            <TableCell colSpan={3} className="text-right font-bold text-lg">Total</TableCell>
                             <TableCell className="text-right font-bold text-lg">${totalAmount.toFixed(2)}</TableCell>
                             <TableCell />
                         </TableRow>
