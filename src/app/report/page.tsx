@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { Calendar as CalendarIcon, Search } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -84,7 +85,7 @@ export default function ReportPage() {
 
     // For now, we'll just filter the mock data
     const filteredOrders = mockOrders.filter(order => {
-      const orderDate = new Date(order.date);
+      const orderDate = parseISO(order.date); // Use parseISO to avoid timezone issues
       return orderDate >= values.startDate && orderDate <= values.endDate;
     });
     setOrders(filteredOrders);
@@ -220,7 +221,7 @@ export default function ReportPage() {
                     <TableRow key={order.id}>
                       <TableCell className="font-medium">{order.id}</TableCell>
                       <TableCell>{order.customer}</TableCell>
-                      <TableCell>{format(new Date(order.date), 'PPP')}</TableCell>
+                      <TableCell>{format(parseISO(order.date), 'PPP')}</TableCell>
                       <TableCell className="text-right">${order.amount.toFixed(2)}</TableCell>
                     </TableRow>
                   ))}
