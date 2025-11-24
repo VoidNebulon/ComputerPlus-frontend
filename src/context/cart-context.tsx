@@ -14,6 +14,7 @@ export type Product = {
   description: string;
   discount?: number;
   isNew?: boolean;
+  features?: { name: string; value: string }[];
 };
 
 export type CartItem = Product & {

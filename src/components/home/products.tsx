@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/pagination";
 import { placeHolderImages } from "@/lib/placeholder-images";
 
-const products: Omit<Product, 'imageUrl' | 'imageHint' | 'description'>[] = [
+const products: Omit<Product, 'imageUrl' | 'imageHint' | 'description' | 'features'>[] = [
     { id: '1', name: "QuantumCore i9 Processor", price: 499.99, discount: 10, isNew: true },
     { id: '2', name: "AeroCool RGB Gaming Case", price: 89.99, isNew: true },
     { id: '3', name: "GigaWave X-99 Motherboard", price: 219.99, discount: 5 },
@@ -45,6 +45,7 @@ const productsWithImages: Product[] = products.map((product, index) => {
         imageUrl: image.imageUrl,
         imageHint: image.imageHint,
         description: image.description,
+        features: image.features,
     };
 });
 
