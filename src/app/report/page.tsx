@@ -6,7 +6,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { format, parseISO } from 'date-fns';
-import { Calendar as CalendarIcon, Search } from 'lucide-react';
+import { Calendar as CalendarIcon, Search, Link as LinkIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -114,7 +115,7 @@ export default function ReportPage() {
 
             <Card className="mb-8">
               <CardContent className="pt-6">
-                <div className="flex flex-col md:flex-row items-start md:items-end gap-4">
+                <div className="flex w-full items-center justify-between gap-4 md:gap-8 px-4">
                     <FormField
                       control={form.control}
                       name="startDate"
@@ -156,6 +157,22 @@ export default function ReportPage() {
                         </FormItem>
                       )}
                     />
+
+                    <motion.div
+                      animate={{
+                        rotate: [0, 5, -5, 0],
+                        y: [-2, 2, -2],
+                      }}
+                      transition={{
+                        duration: 5,
+                        ease: 'easeInOut',
+                        repeat: Infinity,
+                      }}
+                      className="hidden md:block"
+                    >
+                      <LinkIcon className="h-8 w-8 text-muted-foreground/80" />
+                    </motion.div>
+
                     <FormField
                       control={form.control}
                       name="endDate"
