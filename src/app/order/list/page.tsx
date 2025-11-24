@@ -3,9 +3,9 @@
 
 import * as React from 'react';
 import {
-  CaretSortIcon,
-  ChevronDownIcon,
-} from '@radix-ui/react-icons';
+  ArrowUpDown,
+  ChevronDown,
+} from 'lucide-react';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -95,7 +95,7 @@ export const columns: ColumnDef<Order>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Order Date
-          <CaretSortIcon className="ml-2 h-4 w-4" />
+          <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -114,7 +114,7 @@ export const columns: ColumnDef<Order>[] = [
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Name
-            <CaretSortIcon className="ml-2 h-4 w-4" />
+            <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         );
       },
@@ -220,7 +220,7 @@ export default function OrderListPage() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="ml-auto">
-                    Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+                    Columns <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
@@ -321,5 +321,3 @@ export default function OrderListPage() {
     </div>
   );
 }
-
-    
