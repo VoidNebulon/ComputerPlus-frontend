@@ -144,6 +144,9 @@ export default function ReportPage() {
                             <PopoverContent className="w-auto p-0" align="start">
                               <Calendar
                                 mode="single"
+                                captionLayout="dropdown-buttons"
+                                fromYear={2015}
+                                toYear={2025}
                                 selected={field.value}
                                 onSelect={field.onChange}
                                 disabled={(date) =>
@@ -201,6 +204,9 @@ export default function ReportPage() {
                             <PopoverContent className="w-auto p-0" align="start">
                               <Calendar
                                 mode="single"
+                                captionLayout="dropdown-buttons"
+                                fromYear={2015}
+                                toYear={2025}
                                 selected={field.value}
                                 onSelect={field.onChange}
                                 disabled={(date) =>
