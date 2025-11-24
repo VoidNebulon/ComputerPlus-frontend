@@ -192,7 +192,7 @@ export default function SettingsPage() {
                               <FormLabel>Confirm New Password</FormLabel>
                               <FormControl>
                                 <Input type="password" placeholder="••••••••" {...field} />
-                              FormControl>
+                              </FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
