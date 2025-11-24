@@ -60,14 +60,6 @@ export function ProductDetailModal({ product, isOpen, onOpenChange }: ProductDet
             className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
             data-ai-hint={product.imageHint}
           />
-           <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onOpenChange(false)}
-            className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white rounded-full"
-            >
-            <X className="h-4 w-4" />
-          </Button>
         </div>
 
         {/* Details Section */}
