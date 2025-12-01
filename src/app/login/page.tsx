@@ -394,7 +394,7 @@ export default function LoginPage() {
       <Card
         className="w-full max-w-md animate-fade-up relative overflow-hidden rounded-2xl
           border border-white/90
-          bg-white/30 
+          bg-white/20 
           backdrop-blur-md 
           shadow-[0_0_40px_rgba(255,255,255,0.2)]
           before:absolute before:inset-0
