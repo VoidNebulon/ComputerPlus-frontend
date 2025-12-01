@@ -85,3 +85,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes liquid {
+  0% {
+    transform: translateX(-10%) translateY(-10%) scale(1);
+    filter: blur(20px);
+  }
+  50% {
+    transform: translateX(10%) translateY(10%) scale(1.1);
+    filter: blur(25px);
+  }
+  100% {
+    transform: translateX(-10%) translateY(-10%) scale(1);
+    filter: blur(20px);
+  }
+}
+
+.before\:animate-liquid::before {
+  animation: liquid 12s ease-in-out infinite;
+}
