@@ -382,9 +382,9 @@ export default function LoginPage() {
       >
         <Particles
           particleColors={["#f72684"]}
-          particleCount={400}
+          particleCount={300}
           particleSpread={10}
-          speed={0.3}
+          speed={0.4}
           particleBaseSize={200}
           moveParticlesOnHover={true}
           alphaParticles={true}
@@ -392,15 +392,10 @@ export default function LoginPage() {
         />
       </div>
       <Card
-        className="w-full max-w-md animate-fade-up relative overflow-hidden rounded-2xl
-          border border-white/90
-          bg-white/20 
-          backdrop-blur-md 
-          shadow-[0_0_40px_rgba(255,255,255,0.2)]
-          before:absolute before:inset-0
-          before:bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.25),rgba(255,255,255,0)_60%)]
-          before:opacity-40 before:animate-liquid">
-        <div className="pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light bg-[url('/noise.png')] bg-cover"></div>
+        className="w-full max-w-md animate-fade-up relative overflow-hidden rounded-2xl bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-100 border border-gray-100
+        shadow-[0px_0px_48px_2px_rgba(130,130,130,0.2)]
+        "
+      >
         <CardHeader className="space-y-4">
           <div className="flex flex-col items-center text-center">
             <Link href="/" className="flex items-center gap-3 mb-4">

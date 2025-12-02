@@ -122,7 +122,7 @@ export default {
         "float-blob1": "float1 15s ease-in-out infinite",
         "float-blob2": "float2 20s ease-in-out infinite",
         "float-blob3": "float3 18s ease-in-out infinite",
-        "fade-up": "fade-up 0.5s ease-out forwards", // Adjust duration as needed
+        "fade-up": "fade-up 1s ease-out forwards", // Adjust duration as needed
         "fade-in": "fade-in 1s ease-out forwards",
       },
     },
